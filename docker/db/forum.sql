@@ -1,3 +1,7 @@
+-- Создать базу, если не существует
+CREATE DATABASE IF NOT EXISTS forum CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE forum;
+
 -- phpMyAdmin SQL Dump
 -- version 4.2.12deb2
 -- http://www.phpmyadmin.net
