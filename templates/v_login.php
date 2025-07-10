@@ -1,20 +1,38 @@
 ﻿<?php
 /**
- * Шаблон редактора
- * ================
- * $title - заголовок статьи
- * $text - текст статьи
- * $error - текст ошибки (null, если нет ошибки)
+ * Шаблон редактора авторизации
+ * ============================
+ * @var string|null $title   Заголовок статьи
+ * @var string|null $text    Текст статьи
+ * @var string|null $error   Сообщение об ошибке (null, если нет ошибки)
  */
 ?>
+
 <h1>Авторизация</h1>
 <a href="index.php">Главная</a>
-<form method="post">
 
-  <div>Email:<input type="text" id="validate" width="30" name="login"><span id="validEmail"></span></div>
+<?php if (!empty($error)): ?>
+    <div class="alert alert-danger" role="alert">
+        <?= htmlspecialchars($error) ?>
+    </div>
+<?php endif; ?>
 
-  Пароль: <input type="password" name="password" /><br/>
-  <input type="checkbox" name="remember" /> Запомить меня<br/>
-  <input type="submit" />
-  <button type="button" onclick="javascript:history.go(-1)">Отмена</button>
+<form method="post" class="mt-3">
+    <div class="mb-3">
+        <label for="login" class="form-label">Email:</label>
+        <input type="text" class="form-control" id="login" name="login" value="<?= htmlspecialchars($_POST['login'] ?? '') ?>">
+    </div>
+
+    <div class="mb-3">
+        <label for="password" class="form-label">Пароль:</label>
+        <input type="password" class="form-control" id="password" name="password">
+    </div>
+
+    <div class="form-check mb-3">
+        <input type="checkbox" class="form-check-input" id="remember" name="remember" <?= isset($_POST['remember']) ? 'checked' : '' ?> >
+        <label class="form-check-label" for="remember">Запомнить меня</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Войти</button>
+    <button type="button" class="btn btn-secondary" onclick="history.back()">Отмена</button>
 </form>
