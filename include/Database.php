@@ -140,10 +140,8 @@ class Database
     public function post_count($thread_id)
     {
         try {
-            $sql = "SELECT COUNT(*) FROM forum_posts WHERE forum_thread_id = :thread_id";
-            $stmt = $this->getConnection()->prepare($sql);
-            $stmt->execute([':thread_id' => $thread_id]);
-            return $stmt;
+            $sql = "SELECT COUNT(*) AS count FROM forum_posts WHERE forum_thread_id = $thread_id";
+            return $this->dbh->query($sql)->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             return $e->getMessage();
         }
