@@ -23,5 +23,12 @@
   "require-dev": {
     "rector/rector": "^2.1",
     "roave/security-advisories": "dev-latest"
+  },
+  "extra": {
+    "patches": {
+      "jbbcode/jbbcode": {
+        "Fix PHP 8.4 deprecated implicit nullable": "patches/jbbcode-parser-nullable.patch"
+      }
+    }
   }
 }
