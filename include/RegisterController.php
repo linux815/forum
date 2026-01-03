@@ -1,4 +1,5 @@
 <?php
+/** @noinspection SpellCheckingInspection */
 
 namespace App;
 
@@ -16,8 +17,9 @@ class RegisterController extends BaseController
 
         $mUsers = Users::Instance();
         $mUsers->ClearSessions();
+        $isAjax = strtolower($_SERVER['HTTP_X_REQUESTED_WITH'] ?? '') === 'xmlhttprequest';
 
-        if ($_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest') {
+        if ($isAjax) {
             $login = $mUsers->GetLogin($_POST['name_post']);
 
             if (!empty($login[0])) {

@@ -4,6 +4,7 @@ namespace App;
 
 use Dotenv\Dotenv;
 use PDO;
+use Pdo\Mysql;
 use PDOException;
 
 class Database
@@ -46,7 +47,7 @@ class Database
                 $options = [
                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                    PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'UTF8'",
+                    Mysql::ATTR_INIT_COMMAND => "SET NAMES 'UTF8'",
                 ];
                 $this->dbh = new PDO($dsn, $this->username, $this->password, $options);
             } catch (PDOException $e) {
